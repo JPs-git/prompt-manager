@@ -18,6 +18,8 @@ import { PromptVersion } from "@/entities/prompt-version.entity/prompt-version.e
       entities: [User, Prompt, Tag, Template, PromptVersion],
       synchronize: process.env.NODE_ENV !== "production",
       logging: true,
+      retryAttempts: 10,
+      retryDelay: 1000,
     }),
   ],
   exports: [TypeOrmModule],
