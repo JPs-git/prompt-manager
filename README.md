@@ -109,3 +109,30 @@ prompt-manager/
 ## 许可证
 
 MIT License
+
+## Commit Message 规范
+
+本项目推荐使用 [Conventional Commits](https://www.conventionalcommits.org/zh-hans/v1.0.0/) 规范进行提交，便于自动化工具识别和生成变更日志。
+
+**格式如下：**
+
+```
+<type>(<scope>): <subject>
+
+[可选正文]
+[可选脚注]
+```
+
+- `type`：提交类型，如 feat（新功能）、fix（修复）、docs（文档）、style（格式）、refactor（重构）、test（测试）、chore（杂项）等。
+- `scope`：影响范围（可选），如模块、文件夹名等。
+- `subject`：简要描述本次提交的目的。
+
+**示例：**
+
+```
+feat(prompt): 新增提示词批量导入功能
+fix(api): 修复获取标签列表接口的分页 bug
+chore: 升级依赖包
+```
+
+更多详细说明请参考 [Conventional Commits 官网](https://www.conventionalcommits.org/zh-hans/v1.0.0/)。
