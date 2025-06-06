@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>编辑提示词 - 提示词管理器</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      .editor-container {
+        height: 300px;
+        border: 1px solid #e2e8f0;
+        border-radius: 0.375rem;
+      }
+      .preview-container {
+        min-height: 300px;
+        border: 1px solid #e2e8f0;
+        border-radius: 0.375rem;
+        background-color: #f8fafc;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50">
+    <!-- 顶部导航栏 -->
+    <nav class="bg-white shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+          <div class="flex">
+            <div class="flex-shrink-0 flex items-center">
+              <h1 class="text-xl font-bold text-gray-800">提示词管理器</h1>
+            </div>
+            <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+              <a
+                href="index.html"
+                class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+              >
+                提示词
+              </a>
+              <a
+                href="templates.html"
+                class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+              >
+                模板
+              </a>
+              <a
+                href="tags.html"
+                class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+              >
+                标签
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- 主要内容区 -->
+    <main class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+      <div class="bg-white shadow rounded-lg">
+        <div class="px-4 py-5 sm:p-6">
+          <h2 class="text-lg font-medium text-gray-900 mb-4">编辑提示词</h2>
+
+          <!-- 基本信息 -->
+          <div class="grid grid-cols-1 gap-6 mb-6">
+            <div>
+              <label class="block text-sm font-medium text-gray-700"
+                >标题</label
+              >
+              <input
+                type="text"
+                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                value="代码优化助手"
+              />
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-gray-700"
+                >分类</label
+              >
+              <select
+                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              >
+                <option value="code">代码生成</option>
+                <option value="text">文本生成</option>
+                <option value="image">图像生成</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- 编辑器 -->
+          <div class="mb-6">
+            <label class="block text-sm font-medium text-gray-700 mb-2"
+              >提示词内容</label
+            >
+            <div class="editor-container p-4">
+              <textarea class="w-full h-full focus:outline-none" rows="10">
+你是一个专业的代码优化助手。请帮我优化以下代码，主要关注：
+1. 性能优化
+2. 代码可读性
+3. 最佳实践
+4. 添加必要的注释
+
+代码：
+{{code}}
+
+请按照以下格式输出：
+1. 优化建议
+2. 优化后的代码
+3. 优化说明</textarea
+              >
+            </div>
+          </div>
+
+          <!-- 变量设置 -->
+          <div class="mb-6">
+            <label class="block text-sm font-medium text-gray-700 mb-2"
+              >变量设置</label
+            >
+            <div class="bg-gray-50 p-4 rounded-md">
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-sm text-gray-600">变量名</label>
+                  <input
+                    type="text"
+                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                    value="code"
+                    readonly
+                  />
+                </div>
+                <div>
+                  <label class="block text-sm text-gray-600">描述</label>
+                  <input
+                    type="text"
+                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                    value="需要优化的代码"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 标签 -->
+          <div class="mb-6">
+            <label class="block text-sm font-medium text-gray-700 mb-2"
+              >标签</label
+            >
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm flex items-center"
+              >
+                代码优化
+                <button class="ml-2 text-blue-600 hover:text-blue-800">
+                  <i class="fas fa-times"></i>
+                </button>
+              </span>
+              <span
+                class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm flex items-center"
+              >
+                性能
+                <button class="ml-2 text-blue-600 hover:text-blue-800">
+                  <i class="fas fa-times"></i>
+                </button>
+              </span>
+              <button
+                class="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm hover:bg-gray-200"
+              >
+                + 添加标签
+              </button>
+            </div>
+          </div>
+
+          <!-- 预览 -->
+          <div class="mb-6">
+            <label class="block text-sm font-medium text-gray-700 mb-2"
+              >预览</label
+            >
+            <div class="preview-container p-4">
+              <div class="prose max-w-none">
+                <h3>代码优化助手</h3>
+                <p>
+                  你是一个专业的代码优化助手。请帮我优化以下代码，主要关注：
+                </p>
+                <ol>
+                  <li>性能优化</li>
+                  <li>代码可读性</li>
+                  <li>最佳实践</li>
+                  <li>添加必要的注释</li>
+                </ol>
+                <p>代码：</p>
+                <pre><code>[用户输入的代码将显示在这里]</code></pre>
+                <p>请按照以下格式输出：</p>
+                <ol>
+                  <li>优化建议</li>
+                  <li>优化后的代码</li>
+                  <li>优化说明</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+
+          <!-- 操作按钮 -->
+          <div class="flex justify-end space-x-3">
+            <button
+              class="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50"
+            >
+              取消
+            </button>
+            <button
+              class="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700"
+            >
+              保存
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

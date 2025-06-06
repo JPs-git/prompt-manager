@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>提示词管理器</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      .prompt-card {
+        transition: all 0.3s ease;
+      }
+      .prompt-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+          0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50">
+    <!-- 顶部导航栏 -->
+    <nav class="bg-white shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+          <div class="flex">
+            <div class="flex-shrink-0 flex items-center">
+              <h1 class="text-xl font-bold text-gray-800">提示词管理器</h1>
+            </div>
+            <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+              <a
+                href="#"
+                class="border-indigo-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+              >
+                提示词
+              </a>
+              <a
+                href="templates.html"
+                class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+              >
+                模板
+              </a>
+              <a
+                href="tags.html"
+                class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+              >
+                标签
+              </a>
+            </div>
+          </div>
+          <div class="flex items-center">
+            <button
+              class="bg-indigo-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-indigo-700"
+            >
+              新建提示词
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- 主要内容区 -->
+    <main class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+      <!-- 搜索和筛选 -->
+      <div class="mb-6">
+        <div class="flex space-x-4">
+          <div class="flex-1">
+            <input
+              type="text"
+              placeholder="搜索提示词..."
+              class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            />
+          </div>
+          <div class="w-48">
+            <select
+              class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            >
+              <option value="">所有分类</option>
+              <option value="text">文本生成</option>
+              <option value="image">图像生成</option>
+              <option value="code">代码生成</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- 标签筛选 -->
+      <div class="mb-6 flex flex-wrap gap-2">
+        <span
+          class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm"
+          >AI助手</span
+        >
+        <span
+          class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm"
+          >代码优化</span
+        >
+        <span
+          class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm"
+          >内容创作</span
+        >
+        <span class="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm"
+          >+ 更多标签</span
+        >
+      </div>
+
+      <!-- 提示词列表 -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- 提示词卡片 1 -->
+        <div class="prompt-card bg-white rounded-lg shadow p-6">
+          <div class="flex justify-between items-start mb-4">
+            <h3 class="text-lg font-medium text-gray-900">代码优化助手</h3>
+            <div class="flex space-x-2">
+              <button class="text-gray-400 hover:text-gray-500">
+                <i class="fas fa-edit"></i>
+              </button>
+              <button class="text-gray-400 hover:text-gray-500">
+                <i class="fas fa-copy"></i>
+              </button>
+            </div>
+          </div>
+          <p class="text-gray-600 text-sm mb-4">
+            优化代码性能，提高可读性，添加注释...
+          </p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span
+              class="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs"
+              >代码优化</span
+            >
+            <span
+              class="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs"
+              >性能</span
+            >
+          </div>
+          <div class="text-sm text-gray-500">最后更新：2024-03-20</div>
+        </div>
+
+        <!-- 提示词卡片 2 -->
+        <div class="prompt-card bg-white rounded-lg shadow p-6">
+          <div class="flex justify-between items-start mb-4">
+            <h3 class="text-lg font-medium text-gray-900">内容创作助手</h3>
+            <div class="flex space-x-2">
+              <button class="text-gray-400 hover:text-gray-500">
+                <i class="fas fa-edit"></i>
+              </button>
+              <button class="text-gray-400 hover:text-gray-500">
+                <i class="fas fa-copy"></i>
+              </button>
+            </div>
+          </div>
+          <p class="text-gray-600 text-sm mb-4">
+            生成高质量的文章、博客、社交媒体内容...
+          </p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span
+              class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs"
+              >内容创作</span
+            >
+            <span
+              class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs"
+              >SEO</span
+            >
+          </div>
+          <div class="text-sm text-gray-500">最后更新：2024-03-19</div>
+        </div>
+
+        <!-- 提示词卡片 3 -->
+        <div class="prompt-card bg-white rounded-lg shadow p-6">
+          <div class="flex justify-between items-start mb-4">
+            <h3 class="text-lg font-medium text-gray-900">AI 助手模板</h3>
+            <div class="flex space-x-2">
+              <button class="text-gray-400 hover:text-gray-500">
+                <i class="fas fa-edit"></i>
+              </button>
+              <button class="text-gray-400 hover:text-gray-500">
+                <i class="fas fa-copy"></i>
+              </button>
+            </div>
+          </div>
+          <p class="text-gray-600 text-sm mb-4">
+            通用 AI 助手提示词模板，可自定义角色和任务...
+          </p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span
+              class="px-2 py-1 bg-purple-100 text-purple-800 rounded-full text-xs"
+              >模板</span
+            >
+            <span
+              class="px-2 py-1 bg-purple-100 text-purple-800 rounded-full text-xs"
+              >AI助手</span
+            >
+          </div>
+          <div class="text-sm text-gray-500">最后更新：2024-03-18</div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

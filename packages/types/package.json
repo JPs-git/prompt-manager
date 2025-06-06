@@ -1,0 +1,20 @@
+{
+  "name": "@prompt-manager/types",
+  "version": "0.1.0",
+  "private": true,
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "lint": "eslint src --ext .ts,.tsx",
+    "clean": "rimraf .turbo node_modules dist"
+  },
+  "devDependencies": {
+    "@types/node": "^20.1.4",
+    "eslint": "^8.42.0",
+    "tsup": "^7.0.0",
+    "typescript": "^5.1.3"
+  }
+} 

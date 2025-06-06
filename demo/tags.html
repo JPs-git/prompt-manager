@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>标签管理 - 提示词管理器</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      .tag-card {
+        transition: all 0.3s ease;
+      }
+      .tag-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+          0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50">
+    <!-- 顶部导航栏 -->
+    <nav class="bg-white shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+          <div class="flex">
+            <div class="flex-shrink-0 flex items-center">
+              <h1 class="text-xl font-bold text-gray-800">提示词管理器</h1>
+            </div>
+            <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+              <a
+                href="index.html"
+                class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+              >
+                提示词
+              </a>
+              <a
+                href="templates.html"
+                class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+              >
+                模板
+              </a>
+              <a
+                href="#"
+                class="border-indigo-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+              >
+                标签
+              </a>
+            </div>
+          </div>
+          <div class="flex items-center">
+            <button
+              class="bg-indigo-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-indigo-700"
+            >
+              新建标签
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- 主要内容区 -->
+    <main class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+      <!-- 搜索 -->
+      <div class="mb-6">
+        <div class="flex space-x-4">
+          <div class="flex-1">
+            <input
+              type="text"
+              placeholder="搜索标签..."
+              class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- 标签统计 -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+        <div class="bg-white rounded-lg shadow p-6">
+          <div class="flex items-center">
+            <div class="p-3 rounded-full bg-indigo-100 text-indigo-600">
+              <i class="fas fa-tags text-xl"></i>
+            </div>
+            <div class="ml-4">
+              <h3 class="text-lg font-medium text-gray-900">总标签数</h3>
+              <p class="text-2xl font-semibold text-gray-900">24</p>
+            </div>
+          </div>
+        </div>
+        <div class="bg-white rounded-lg shadow p-6">
+          <div class="flex items-center">
+            <div class="p-3 rounded-full bg-green-100 text-green-600">
+              <i class="fas fa-file-alt text-xl"></i>
+            </div>
+            <div class="ml-4">
+              <h3 class="text-lg font-medium text-gray-900">已使用标签</h3>
+              <p class="text-2xl font-semibold text-gray-900">18</p>
+            </div>
+          </div>
+        </div>
+        <div class="bg-white rounded-lg shadow p-6">
+          <div class="flex items-center">
+            <div class="p-3 rounded-full bg-blue-100 text-blue-600">
+              <i class="fas fa-chart-line text-xl"></i>
+            </div>
+            <div class="ml-4">
+              <h3 class="text-lg font-medium text-gray-900">最常用标签</h3>
+              <p class="text-2xl font-semibold text-gray-900">AI助手</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 标签列表 -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- 标签卡片 1 -->
+        <div class="tag-card bg-white rounded-lg shadow p-6">
+          <div class="flex justify-between items-start mb-4">
+            <div>
+              <h3 class="text-lg font-medium text-gray-900">AI助手</h3>
+              <p class="text-sm text-gray-500">用于AI助手相关的提示词</p>
+            </div>
+            <div class="flex space-x-2">
+              <button class="text-gray-400 hover:text-gray-500">
+                <i class="fas fa-edit"></i>
+              </button>
+              <button class="text-gray-400 hover:text-gray-500">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </div>
+          <div class="flex items-center justify-between">
+            <div class="text-sm text-gray-500">使用次数：42</div>
+            <div class="text-sm text-gray-500">最后使用：2024-03-20</div>
+          </div>
+        </div>
+
+        <!-- 标签卡片 2 -->
+        <div class="tag-card bg-white rounded-lg shadow p-6">
+          <div class="flex justify-between items-start mb-4">
+            <div>
+              <h3 class="text-lg font-medium text-gray-900">代码优化</h3>
+              <p class="text-sm text-gray-500">用于代码优化相关的提示词</p>
+            </div>
+            <div class="flex space-x-2">
+              <button class="text-gray-400 hover:text-gray-500">
+                <i class="fas fa-edit"></i>
+              </button>
+              <button class="text-gray-400 hover:text-gray-500">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </div>
+          <div class="flex items-center justify-between">
+            <div class="text-sm text-gray-500">使用次数：28</div>
+            <div class="text-sm text-gray-500">最后使用：2024-03-19</div>
+          </div>
+        </div>
+
+        <!-- 标签卡片 3 -->
+        <div class="tag-card bg-white rounded-lg shadow p-6">
+          <div class="flex justify-between items-start mb-4">
+            <div>
+              <h3 class="text-lg font-medium text-gray-900">内容创作</h3>
+              <p class="text-sm text-gray-500">用于内容创作相关的提示词</p>
+            </div>
+            <div class="flex space-x-2">
+              <button class="text-gray-400 hover:text-gray-500">
+                <i class="fas fa-edit"></i>
+              </button>
+              <button class="text-gray-400 hover:text-gray-500">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </div>
+          <div class="flex items-center justify-between">
+            <div class="text-sm text-gray-500">使用次数：35</div>
+            <div class="text-sm text-gray-500">最后使用：2024-03-18</div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
