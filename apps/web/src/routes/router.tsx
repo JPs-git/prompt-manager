@@ -8,6 +8,10 @@ const router = createBrowserRouter([
     element: <Home />,
   },
   {
+    path: "/create/:id",
+    element: <CreatePrompt />,
+  },
+  {
     path: "/create",
     element: <CreatePrompt />,
   },

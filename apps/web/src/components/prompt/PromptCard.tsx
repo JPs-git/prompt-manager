@@ -24,9 +24,9 @@ const PromptCard = ({
   onCopy,
 }: PromptCardProps) => {
   return (
-    <div className="prompt-card bg-white rounded-lg shadow p-6 max-w-full min-w-0">
+    <div className="prompt-card bg-white rounded-lg shadow p-6 max-w-full min-w-0" onClick={onEdit}>
       <div className="flex justify-between items-start mb-4">
-        <h3 className="text-lg font-medium text-gray-900">{title}</h3>
+        <h3 className="text-lg font-medium text-gray-900 line-clamp-1">{title}</h3>
         <div className="flex space-x-2">
           <button
             className="text-gray-400 hover:text-gray-500 p-1"
@@ -44,7 +44,7 @@ const PromptCard = ({
           </button>
         </div>
       </div>
-      <p className="text-gray-600 text-sm mb-4 line-clamp-2">{content}</p>
+      <p className="text-gray-600 text-sm mb-4 line-clamp-2 min-h-[40px]">{content}</p>
       <div className="flex flex-wrap gap-2 mb-4">
         <span className="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">
           {category}

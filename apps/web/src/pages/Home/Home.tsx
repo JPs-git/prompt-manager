@@ -1,31 +1,31 @@
 import { useEffect, useState } from "react";
-import MainLayout from "../components/layout/MainLayout";
-import SearchAndFilter from "../components/prompt/SearchAndFilter";
-import PromptCard from "../components/prompt/PromptCard";
-import HomeMockData from "../mock/Home";
-import { Prompt } from "@/types/Prompts";
+import MainLayout from "../../components/layout/MainLayout";
+import SearchAndFilter from "../../components/prompt/SearchAndFilter";
+import PromptCard from "../../components/prompt/PromptCard";
+import HomeMockData from "../../mock/Home";
 import { Empty } from "antd";
+import { Prompt } from "@/types/Prompts";
+import { useNavigate } from "react-router-dom";
+import { UUIDTypes } from "uuid";
 
 /**
  * 首页组件
  * 展示提示词列表，包含搜索、筛选和展示功能
  */
-const Home = () => {
+const Home = (props: { getPrompts: () => void; prompts: Prompt[] }) => {
   // 状态管理
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
-  const [prompts, setPrompts] = useState<Prompt[]>([]);
+  const navigate = useNavigate();
+
+  const { getPrompts, prompts } = props;
 
   const { categories, tags } = HomeMockData;
 
   useEffect(() => {
-
-    // 从localStorage中读取prompts
-    const prompts = JSON.parse(localStorage.getItem("prompts") || "[]");
-    setPrompts(prompts);
-    console.log(prompts);
-  }, []);
+    getPrompts();
+  }, [getPrompts]);
 
   // 事件处理函数
   const handleSearchChange = (value: string) => {
@@ -42,11 +42,12 @@ const Home = () => {
     );
   };
 
-  const handleEdit = (id: number) => {
+  const handleEdit = (id: UUIDTypes) => {
     console.log("编辑提示词:", id);
+    navigate(`/create/${id}`);
   };
 
-  const handleCopy = (id: number) => {
+  const handleCopy = (id: UUIDTypes) => {
     console.log("复制提示词:", id);
   };
 
@@ -66,10 +67,9 @@ const Home = () => {
           />
         </div>
         {prompts.length > 0 ? (
-          <div className="flex flex-wrap ">
-          { prompts.map((prompt) => (
-            <div key={prompt.id} className="flex justify-center">
-              <div className="w-full max-w-md">
+          <div className="grid grid-cols-3 gap-6">
+            {prompts.map((prompt) => (
+              <div key={prompt.id as string}>
                 <PromptCard
                   title={prompt.title}
                   content={prompt.content}
@@ -80,9 +80,8 @@ const Home = () => {
                   onCopy={() => handleCopy(prompt.id)}
                 />
               </div>
-            </div>
-          )) }
-        </div>
+            ))}
+          </div>
         ) : (
           <div className="flex justify-center items-center h-full">
             <Empty description="暂无提示词" />

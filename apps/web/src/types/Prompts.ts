@@ -1,6 +1,8 @@
+import { UUIDTypes } from "uuid";
+
 // 提示词的类型
 export type Prompt = {
-  id: number;
+  id: UUIDTypes;
   title: string;
   content: string;
   category: string;
