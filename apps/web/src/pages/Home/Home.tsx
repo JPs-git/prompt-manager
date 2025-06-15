@@ -3,7 +3,7 @@ import MainLayout from "../../components/layout/MainLayout";
 import SearchAndFilter from "../../components/prompt/SearchAndFilter";
 import PromptCard from "../../components/prompt/PromptCard";
 import HomeMockData from "../../mock/Home";
-import { Empty } from "antd";
+import { Empty, message } from "antd";
 import { Prompt } from "@/types/Prompts";
 import { useNavigate } from "react-router-dom";
 import { UUIDTypes } from "uuid";
@@ -49,6 +49,8 @@ const Home = (props: { getPrompts: () => void; prompts: Prompt[] }) => {
 
   const handleCopy = (id: UUIDTypes) => {
     console.log("复制提示词:", id);
+    navigator.clipboard.writeText(prompts.find((prompt) => prompt.id === id)?.content || "");
+    message.success("复制成功");
   };
 
   return (

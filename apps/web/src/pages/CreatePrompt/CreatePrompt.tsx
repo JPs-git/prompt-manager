@@ -54,6 +54,7 @@ const CreatePrompt: React.FC<CreatePromptProps> = ({
 
     localStorage.setItem("prompts", JSON.stringify(prompts));
     message.success(prompt ? "提示词更新成功！" : "提示词保存成功！");
+    navigate("/");
   };
 
   const handleAddTag = () => {

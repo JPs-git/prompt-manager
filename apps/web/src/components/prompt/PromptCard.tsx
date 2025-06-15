@@ -37,7 +37,10 @@ const PromptCard = ({
           </button>
           <button
             className="text-gray-400 hover:text-gray-500 p-1"
-            onClick={onCopy}
+            onClick={(e) => {
+              e.stopPropagation();
+              onCopy();
+            }}
             aria-label="复制"
           >
             <CopyOutlined />
