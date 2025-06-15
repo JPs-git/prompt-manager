@@ -1,10 +1,9 @@
 import { connect } from "react-redux";
-import { GET_PROMPTS } from "../../store/actions";
+import { DELETE_PROMPT } from "../../store/actions";
 import CreatePrompt from "./CreatePrompt";
 import { State } from "../../store/types";
 import { Dispatch } from "@reduxjs/toolkit";
 import { useParams } from "react-router-dom";
-
 
 const mapStateToProps = (state: State) => {
   const { id } = useParams();
@@ -16,9 +15,9 @@ const mapStateToProps = (state: State) => {
   return { prompt: undefined };
 };
 
-const mapDispatchToProps = (dispatch: Dispatch) => {
+const mapDispatchToProps = (dispatch: Dispatch<any>) => {
   return {
-    getPrompts: () => dispatch(GET_PROMPTS()),
+    deletePrompt: (id: string) => dispatch(DELETE_PROMPT(id)),
   };
 };
 

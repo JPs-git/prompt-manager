@@ -1,5 +1,9 @@
 import { Prompt } from "@/types/Prompts";
+import { User } from "@/types/User";
 
 export interface State {
-  prompts: Prompt[]
+  user: User;
+  prompts: Prompt[];
+  loading: boolean;
+  error: string | null;
 }

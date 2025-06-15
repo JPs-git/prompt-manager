@@ -1,31 +1,43 @@
 import React, { useState, useEffect } from "react";
-import { Form, Input, Select, Button, message, Tag } from "antd";
+import { Form, Input, Select, Button, message, Tag, Modal } from "antd";
 import { Prompt } from "@/types/Prompts";
 import { promptFactory } from "@/utils/promptFactory";
 import MainLayout from "@/components/layout/MainLayout";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { State } from "@/store/types";
+
 const { TextArea } = Input;
 const { Option } = Select;
 
 interface CreatePromptProps {
   prompt?: Prompt;
+  deletePrompt?: (id: string) => void;
 }
 
 const CreatePrompt: React.FC<CreatePromptProps> = ({
   prompt,
+  deletePrompt,
 }) => {
   const [form] = Form.useForm();
   const [tags, setTags] = useState<string[]>([]);
   const [newTag, setNewTag] = useState<string>("");
-
+  const { loading, error } = useSelector((state: State) => state);
 
   useEffect(() => {
     if (prompt) {
-      if (prompt) {
-        form.setFieldsValue(prompt);
-        setTags(prompt.tags || []);
-      }
+      form.setFieldsValue(prompt);
+      setTags(prompt.tags || []);
     }
   }, [prompt, form]);
+
+  useEffect(() => {
+    if (error) {
+      message.error(error);
+    }
+  }, [error]);
+
+  const navigate = useNavigate();
 
   const onFinish = (values: Prompt) => {
     const prompts = JSON.parse(localStorage.getItem("prompts") || "[]");
@@ -53,6 +65,24 @@ const CreatePrompt: React.FC<CreatePromptProps> = ({
 
   const handleRemoveTag = (tag: string) => {
     setTags(tags.filter((t) => t !== tag));
+  };
+
+  const handleDelete = () => {
+    Modal.confirm({
+      title: "确认删除提示词",
+      content: "确定要删除该提示词吗？",
+      onOk: async () => {
+        try {
+          if (prompt && deletePrompt) {
+            await deletePrompt(prompt.id as string);
+            message.success("提示词删除成功！");
+            navigate("/");
+          }
+        } catch (error) {
+          message.error("删除失败，请重试");
+        }
+      },
+    });
   };
 
   return (
@@ -121,13 +151,28 @@ const CreatePrompt: React.FC<CreatePromptProps> = ({
               </div>
 
               <Form.Item>
-                <Button
-                  type="primary"
-                  htmlType="submit"
-                  className="right-0 absolute bg-blue-400"
-                >
-                  {prompt ? "更新" : "保存"}
-                </Button>
+                <div className="flex justify-end">
+                  <Button
+                    type="primary"
+                    htmlType="submit"
+                    className="bg-blue-400"
+                    loading={loading}
+                  >
+                    {prompt ? "更新" : "保存"}
+                  </Button>
+                  {prompt && (
+                    <Button
+                      onClick={handleDelete}
+                      type="primary"
+                      htmlType="button"
+                      className="ml-4 bg-red-400"
+                      danger
+                      loading={loading}
+                    >
+                      删除
+                    </Button>
+                  )}
+                </div>
               </Form.Item>
             </Form>
           </div>
